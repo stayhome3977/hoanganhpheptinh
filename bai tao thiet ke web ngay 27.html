@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html5 lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tính Toán</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 5px;
+        }
+        .result {
+            font-weight: bold;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Trang Web Tính Toán</h1>
+
+    <h2>Tính Tổng Từ 1 Đến n</h2>
+    <input type="number" id="n1" placeholder="Nhập n">
+    <button onclick="tinhTong()">Tính Tổng</button>
+    <p class="result" id="tongResult"></p>
+
+    <h2>Tính Tổng Các Số Chẵn Từ 1 Đến n</h2>
+    <input type="number" id="n2" placeholder="Nhập n">
+    <button onclick="tinhTongChan()">Tính Tổng Số Chẵn</button>
+    <p class="result" id="tongChanResult"></p>
+
+    <h2>Tính Tổng Các Số Lẻ Từ 1 Đến n</h2>
+    <input type="number" id="n3" placeholder="Nhập n">
+    <button onclick="tinhTongLe()">Tính Tổng Số Lẻ</button>
+    <p class="result" id="tongLeResult"></p>
+
+    <h2>Kiểm Tra Số Nguyên Tố</h2>
+    <input type="number" id="n4" placeholder="Nhập n">
+    <button onclick="kiemTraNguyenTo()">Kiểm Tra</button>
+    <p class="result" id="nguyenToResult"></p>
+
+    <h2>Tìm UCLN Của 2 Số</h2>
+    <input type="number" id="a" placeholder="Nhập số a">
+    <input type="number" id="b" placeholder="Nhập số b">
+    <button onclick="timUCLN()">Tìm UCLN</button>
+    <p class="result" id="uclnResult"></p>
+
+    <script>
+        // Tính tổng từ 1 đến n
+        function tinhTong() {
+            const n = parseInt(document.getElementById('n1').value);
+            let tong = 0;
+            for (let i = 1; i <= n; i++) {
+                tong += i;
+            }
+            document.getElementById('tongResult').innerText = 'Tổng từ 1 đến ' + n + ' là: ' + tong;
+        }
+
+        // Tính tổng các số chẵn từ 1 đến n
+        function tinhTongChan() {
+            const n = parseInt(document.getElementById('n2').value);
+            let tongChan = 0;
+            for (let i = 2; i <= n; i += 2) {
+                tongChan += i;
+            }
+            document.getElementById('tongChanResult').innerText = 'Tổng các số chẵn từ 1 đến ' + n + ' là: ' + tongChan;
+        }
+
+        // Tính tổng các số lẻ từ 1 đến n
+        function tinhTongLe() {
+            const n = parseInt(document.getElementById('n3').value);
+            let tongLe = 0;
+            for (let i = 1; i <= n; i += 2) {
+                tongLe += i;
+            }
+            document.getElementById('tongLeResult').innerText = 'Tổng các số lẻ từ 1 đến ' + n + ' là: ' + tongLe;
+        }
+
+        // Kiểm tra n có phải số nguyên tố không
+        function kiemTraNguyenTo() {
+            const n = parseInt(document.getElementById('n4').value);
+            let isPrime = true;
+            if (n < 2) isPrime = false;
+            for (let i = 2; i <= Math.sqrt(n); i++) {
+                if (n % i === 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            document.getElementById('nguyenToResult').innerText = n + (isPrime ? ' là số nguyên tố.' : ' không phải là số nguyên tố.');
+        }
+
+        // Tìm UCLN của 2 số a và b
+        function timUCLN() {
+            const a = parseInt(document.getElementById('a').value);
+            const b = parseInt(document.getElementById('b').value);
+
+            function ucln(x, y) {
+                if (y === 0) return x;
+                return ucln(y, x % y);
+            }
+
+            const result = ucln(a, b);
+            document.getElementById('uclnResult').innerText = 'UCLN của ' + a + ' và ' + b + ' là: ' + result;
+        }
+    </script>
+
+</body>
+</html5
